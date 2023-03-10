@@ -1,0 +1,16 @@
+version: '3.9'
+services:  
+  web_api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: dockerfile.api     
+    networks:
+      - net
+    ports:
+      - 8080:8080
+networks:
+  net:
+    driver: bridge
+volumes: 
+  web_api:

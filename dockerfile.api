@@ -1,0 +1,15 @@
+FROM golang:1.15.6-alpine3.12
+# workspace directory
+WORKDIR /cmd
+# copy `go.mod` and `go.sum`
+ADD go.mod go.sum ./
+# install dependencies
+RUN go mod download
+# copy source code
+COPY . .
+# build executable
+RUN go build -o webapi ./cmd/.
+
+
+# run binary
+ENTRYPOINT [ "./webapi" ]
